@@ -2,7 +2,7 @@ class RegistrationsController < ApplicationController
   skip_before_action :authenticate_request
 
   def create
-    command = CreateUser.call(params[:name], params[:email], params[:password])
+    command = CreateUser.call(params[:name], params[:email], params[:password], params[:role])
     if command.success?
       render json: { auth_token: command.result }
     else
